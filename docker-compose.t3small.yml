@@ -140,6 +140,8 @@ services:
     depends_on:
       n8n-import:
         condition: service_completed_successfully
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   qdrant:
     image: qdrant/qdrant
@@ -250,3 +252,26 @@ services:
     devices:
       - /dev/kfd
       - /dev/dri
+
+  # Watchtower - Automatic Docker Image Updates
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_INCLUDE_STOPPED=false
+      - WATCHTOWER_SCHEDULE=0 0 3 * * SUN
+      - WATCHTOWER_LABEL_ENABLE=true
+      - TZ=America/New_York
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+        reservations:
+          memory: 32M
