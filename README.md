@@ -1,175 +1,346 @@
-# Local AI Stack - AWS t3.small Optimized# Self-hosted AI Package
+# HPC Local AI Stack - AWS t3.small Optimized# Local AI Stack - AWS t3.small Optimized# Self-hosted AI Package
 
 
 
-🚀 **Optimized Local AI Stack for AWS t3.small instances with Ubuntu 24.04 LTS****Self-hosted AI Package** is an open, docker compose template that
-
-quickly bootstraps a fully featured Local AI and Low Code development
-
-A streamlined deployment of the most essential AI services, optimized for small cloud instances with automatic n8n updates.environment including Ollama for your local LLMs, Open WebUI for an interface to chat with your N8N agents, and Supabase for your database, vector store, and authentication. 
+🚀 **Optimized Local AI Stack for AWS t3.small instances with Ubuntu 24.04 LTS**
 
 
 
-## 🎯 What's IncludedThis is Cole's version with a couple of improvements and the addition of Supabase, Open WebUI, Flowise, Neo4j, Langfuse, SearXNG, and Caddy!
+A streamlined deployment of the most essential AI services, optimized for small cloud instances with automatic n8n updates.🚀 **Optimized Local AI Stack for AWS t3.small instances with Ubuntu 24.04 LTS****Self-hosted AI Package** is an open, docker compose template that
 
-Also, the local RAG AI Agent workflows from the video will be automatically in your 
 
-✅ **n8n** - Low-code platform with 400+ integrations and AI components (256MB limit)  n8n instance if you use this setup instead of the base one provided by n8n!
+
+## 🎯 What's Includedquickly bootstraps a fully featured Local AI and Low Code development
+
+
+
+✅ **n8n** - Low-code platform with 400+ integrations and AI components (256MB limit)  A streamlined deployment of the most essential AI services, optimized for small cloud instances with automatic n8n updates.environment including Ollama for your local LLMs, Open WebUI for an interface to chat with your N8N agents, and Supabase for your database, vector store, and authentication. 
 
 ✅ **Supabase** - Open source database as a service for AI agents  
 
-✅ **Ollama** - Local LLM platform (1.5GB limit, single model)  **IMPORANT**: Supabase has updated a couple environment variables so you may have to add some new default values in your .env that I have in my .env.example if you have had this project up and running already and are just pulling new changes. Specifically, you need to add "POOLER_DB_POOL_SIZE=5" to your .env. This is required if you have had the package running before June 14th.
+✅ **Ollama** - Local LLM platform (1.5GB limit, single model)  
 
 ✅ **Open WebUI** - ChatGPT-like interface (256MB limit)  
 
-✅ **Flowise** - No/low code AI agent builder (256MB limit)  ## Important Links
+✅ **Flowise** - No/low code AI agent builder (256MB limit)  ## 🎯 What's IncludedThis is Cole's version with a couple of improvements and the addition of Supabase, Open WebUI, Flowise, Neo4j, Langfuse, SearXNG, and Caddy!
 
 ✅ **Qdrant** - High performance vector store (256MB limit)  
 
-✅ **Caddy** - Automatic SSL/TLS with Let's Encrypt (64MB limit)  - [Local AI community](https://thinktank.ottomator.ai/c/local-ai/18) forum over in the oTTomator Think Tank
+✅ **Caddy** - Automatic SSL/TLS with Let's Encrypt (64MB limit)  Also, the local RAG AI Agent workflows from the video will be automatically in your 
 
 
 
-## 🏗️ Optimizations for t3.small (2GB RAM)- [GitHub Kanban board](https://github.com/users/coleam00/projects/2/views/1) for feature implementation and bug squashing.
+## 🏗️ Optimizations for t3.small (2GB RAM)✅ **n8n** - Low-code platform with 400+ integrations and AI components (256MB limit)  n8n instance if you use this setup instead of the base one provided by n8n!
 
 
 
-- **Memory limits** on all services to prevent OOM- [Original Local AI Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) by the n8n team
+- **Memory limits** on all services to prevent OOM✅ **Supabase** - Open source database as a service for AI agents  
 
 - **Removed unnecessary services** (Neo4j, Langfuse, SearXNG, ClickHouse, Minio)
 
-- **Single LLM model** loading with reduced context length- Download my N8N + OpenWebUI integration [directly on the Open WebUI site.](https://openwebui.com/f/coleam/n8n_pipe/) (more instructions below)
+- **Single LLM model** loading with reduced context length✅ **Ollama** - Local LLM platform (1.5GB limit, single model)  **IMPORANT**: Supabase has updated a couple environment variables so you may have to add some new default values in your .env that I have in my .env.example if you have had this project up and running already and are just pulling new changes. Specifically, you need to add "POOLER_DB_POOL_SIZE=5" to your .env. This is required if you have had the package running before June 14th.
 
 - **Sequential startup** to manage memory spikes
 
-- **Automatic n8n updates** with backup and rollback![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
+- **Automatic n8n updates** with backup and rollback✅ **Open WebUI** - ChatGPT-like interface (256MB limit)  
 
 - **Optimized Caddy** configuration for minimal resource usage
 
-Curated by <https://github.com/n8n-io> and <https://github.com/coleam00>, it combines the self-hosted n8n
+✅ **Flowise** - No/low code AI agent builder (256MB limit)  ## Important Links
 
-## 🚀 Quick Startplatform with a curated list of compatible AI products and components to
+## 🚀 Quick Start
 
-quickly get started with building self-hosted AI workflows.
+✅ **Qdrant** - High performance vector store (256MB limit)  
 
 ### 1. Launch AWS EC2 t3.small
 
-- Ubuntu 24.04 LTS### What’s included
+- Ubuntu 24.04 LTS✅ **Caddy** - Automatic SSL/TLS with Let's Encrypt (64MB limit)  - [Local AI community](https://thinktank.ottomator.ai/c/local-ai/18) forum over in the oTTomator Think Tank
 
 - Security group: ports 22, 80, 443
 
-- 2GB RAM, 1 vCPU✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
+- 2GB RAM, 1 vCPU
 
-integrations and advanced AI components
 
-### 2. Deploy the Stack
 
-```bash✅ [**Supabase**](https://supabase.com/) - Open source database as a service -
+### 2. Deploy the Stack## 🏗️ Optimizations for t3.small (2GB RAM)- [GitHub Kanban board](https://github.com/users/coleam00/projects/2/views/1) for feature implementation and bug squashing.
 
-# Clone this repositorymost widely used database for AI agents
+```bash
 
-git clone https://github.com/yourusername/local-ai-t3small-optimized.git
+# Clone this repository
 
-cd local-ai-t3small-optimized✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
+git clone https://github.com/highlandpc/hpc-n8n-ai.git
 
-and run the latest local LLMs
+cd hpc-n8n-ai- **Memory limits** on all services to prevent OOM- [Original Local AI Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) by the n8n team
 
-# Start optimized services
 
-python3 start_t3small.py✅ [**Open WebUI**](https://openwebui.com/) - ChatGPT-like interface to
 
-privately interact with your local models and N8N agents
+# Start optimized services- **Removed unnecessary services** (Neo4j, Langfuse, SearXNG, ClickHouse, Minio)
+
+python3 start_t3small.py
+
+- **Single LLM model** loading with reduced context length- Download my N8N + OpenWebUI integration [directly on the Open WebUI site.](https://openwebui.com/f/coleam/n8n_pipe/) (more instructions below)
 
 # Setup auto-updates (optional)
 
-./setup_autoupdate.sh✅ [**Flowise**](https://flowiseai.com/) - No/low code AI agent
+./setup_autoupdate.sh- **Sequential startup** to manage memory spikes
 
-```builder that pairs very well with n8n
+```
 
+- **Automatic n8n updates** with backup and rollback![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
 
+### 3. Access Services
 
-### 3. Access Services✅ [**Qdrant**](https://qdrant.tech/) - Open source, high performance vector
+- **n8n**: http://localhost:5678- **Optimized Caddy** configuration for minimal resource usage
 
-- **n8n**: http://localhost:5678store with an comprehensive API. Even though you can use Supabase for RAG, this was
+- **Open WebUI**: http://localhost:3000
 
-- **Open WebUI**: http://localhost:3000kept unlike Postgres since it's faster than Supabase so sometimes is the better option.
+- **Flowise**: http://localhost:3001Curated by <https://github.com/n8n-io> and <https://github.com/coleam00>, it combines the self-hosted n8n
 
-- **Flowise**: http://localhost:3001
+- **Supabase**: http://localhost:8000
 
-- **Supabase**: http://localhost:8000✅ [**Neo4j**](https://neo4j.com/) - Knowledge graph engine that powers tools like GraphRAG, LightRAG, and Graphiti 
-
-- **Qdrant**: http://localhost:6333
-
-✅ [**SearXNG**](https://searxng.org/) - Open source, free internet metasearch engine which aggregates 
-
-## 🔄 Automatic n8n Updatesresults from up to 229 search services. Users are neither tracked nor profiled, hence the fit with the local AI package.
+- **Qdrant**: http://localhost:6333## 🚀 Quick Startplatform with a curated list of compatible AI products and components to
 
 
 
-Since n8n updates weekly, this stack includes multiple auto-update options:✅ [**Caddy**](https://caddyserver.com/) - Managed HTTPS/TLS for custom domains
+## 🔄 Automatic n8n Updatesquickly get started with building self-hosted AI workflows.
 
 
 
-```bash✅ [**Langfuse**](https://langfuse.com/) - Open source LLM engineering platform for agent observability
+Since n8n updates weekly, this stack includes multiple auto-update options:### 1. Launch AWS EC2 t3.small
+
+
+
+```bash- Ubuntu 24.04 LTS### What’s included
 
 # Interactive setup
 
-./setup_autoupdate.sh## Prerequisites
+./setup_autoupdate.sh- Security group: ports 22, 80, 443
 
 
 
-# Check update statusBefore you begin, make sure you have the following software installed:
+# Check update status- 2GB RAM, 1 vCPU✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
 
 ./check_autoupdate.sh
 
-- [Python](https://www.python.org/downloads/) - Required to run the setup script
+integrations and advanced AI components
 
-# Manual update- [Git/GitHub Desktop](https://desktop.github.com/) - For easy repository management
+# Manual update
 
-./update_n8n.sh- [Docker/Docker Desktop](https://www.docker.com/products/docker-desktop/) - Required to run all services
+./update_n8n.sh### 2. Deploy the Stack
 
 ```
 
-## Installation
+```bash✅ [**Supabase**](https://supabase.com/) - Open source database as a service -
 
 ### Auto-Update Methods:
 
-1. **🐳 Watchtower** - Docker-based (recommended)Clone the repository and navigate to the project directory:
+1. **🐳 Watchtower** - Docker-based (recommended)# Clone this repositorymost widely used database for AI agents
 
-2. **⚙️ Systemd Timer** - System-level scheduling```bash
+2. **⚙️ Systemd Timer** - System-level scheduling
 
-3. **⏰ Cron Job** - User-level schedulinggit clone -b stable https://github.com/coleam00/local-ai-packaged.git
-
-cd local-ai-packaged
-
-All methods include automatic backup and rollback on failure.```
+3. **⏰ Cron Job** - User-level schedulinggit clone https://github.com/yourusername/local-ai-t3small-optimized.git
 
 
+
+All methods include automatic backup and rollback on failure.cd local-ai-t3small-optimized✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
+
+
+
+## 🌐 Production Setup (SSL)and run the latest local LLMs
+
+
+
+1. **Configure domains** in `.env`:# Start optimized services
+
+```bash
+
+N8N_HOSTNAME=n8n.yourdomain.compython3 start_t3small.py✅ [**Open WebUI**](https://openwebui.com/) - ChatGPT-like interface to
+
+WEBUI_HOSTNAME=openwebui.yourdomain.com
+
+FLOWISE_HOSTNAME=flowise.yourdomain.comprivately interact with your local models and N8N agents
+
+SUPABASE_HOSTNAME=supabase.yourdomain.com
+
+QDRANT_HOSTNAME=qdrant.yourdomain.com# Setup auto-updates (optional)
+
+LETSENCRYPT_EMAIL=admin@yourdomain.com
+
+```./setup_autoupdate.sh✅ [**Flowise**](https://flowiseai.com/) - No/low code AI agent
+
+
+
+2. **Set DNS A records** pointing to your EC2 IP```builder that pairs very well with n8n
+
+
+
+3. **Restart services** with Caddy for automatic SSL
+
+
+
+## 📊 Resource Usage### 3. Access Services✅ [**Qdrant**](https://qdrant.tech/) - Open source, high performance vector
+
+
+
+Optimized for **2GB RAM**:- **n8n**: http://localhost:5678store with an comprehensive API. Even though you can use Supabase for RAG, this was
+
+- Ollama: 1.5GB (single model)
+
+- n8n: 256MB- **Open WebUI**: http://localhost:3000kept unlike Postgres since it's faster than Supabase so sometimes is the better option.
+
+- Open WebUI: 256MB
+
+- Flowise: 256MB- **Flowise**: http://localhost:3001
+
+- Qdrant: 256MB
+
+- Caddy: 64MB- **Supabase**: http://localhost:8000✅ [**Neo4j**](https://neo4j.com/) - Knowledge graph engine that powers tools like GraphRAG, LightRAG, and Graphiti 
+
+- Supabase: ~300MB
+
+- System buffer: ~200MB- **Qdrant**: http://localhost:6333
+
+
+
+## 🛠️ Management Commands✅ [**SearXNG**](https://searxng.org/) - Open source, free internet metasearch engine which aggregates 
+
+
+
+```bash## 🔄 Automatic n8n Updatesresults from up to 229 search services. Users are neither tracked nor profiled, hence the fit with the local AI package.
+
+# Start services
+
+python3 start_t3small.py
+
+
+
+# Check statusSince n8n updates weekly, this stack includes multiple auto-update options:✅ [**Caddy**](https://caddyserver.com/) - Managed HTTPS/TLS for custom domains
+
+docker compose -f docker-compose.t3small.yml ps
+
+
+
+# View logs
+
+docker compose -f docker-compose.t3small.yml logs -f```bash✅ [**Langfuse**](https://langfuse.com/) - Open source LLM engineering platform for agent observability
+
+
+
+# Stop services# Interactive setup
+
+docker compose -f docker-compose.t3small.yml down
+
+./setup_autoupdate.sh## Prerequisites
+
+# Update n8n manually
+
+./update_n8n.sh
+
+
+
+# Check auto-update status# Check update statusBefore you begin, make sure you have the following software installed:
+
+./check_autoupdate.sh
+
+```./check_autoupdate.sh
+
+
+
+## 📁 File Structure- [Python](https://www.python.org/downloads/) - Required to run the setup script
+
+
+
+```# Manual update- [Git/GitHub Desktop](https://desktop.github.com/) - For easy repository management
+
+├── docker-compose.t3small.yml    # Optimized compose file
+
+├── Caddyfile.t3small             # SSL/TLS configuration./update_n8n.sh- [Docker/Docker Desktop](https://www.docker.com/products/docker-desktop/) - Required to run all services
+
+├── start_t3small.py              # Optimized startup script
+
+├── update_n8n.sh                 # n8n update with backup```
+
+├── setup_autoupdate.sh           # Auto-update setup
+
+├── check_autoupdate.sh           # Update status checker## Installation
+
+├── n8n-autoupdate.service        # Systemd service
+
+├── n8n-autoupdate.timer          # Systemd timer### Auto-Update Methods:
+
+└── README-t3small.md             # Detailed guide
+
+```1. **🐳 Watchtower** - Docker-based (recommended)Clone the repository and navigate to the project directory:
+
+
+
+## 🔧 Differences from Original2. **⚙️ Systemd Timer** - System-level scheduling```bash
+
+
+
+This is a **streamlined version** of [local-ai-packaged](https://github.com/coleam00/local-ai-packaged) with:3. **⏰ Cron Job** - User-level schedulinggit clone -b stable https://github.com/coleam00/local-ai-packaged.git
+
+
+
+- **Removed services**: Neo4j, Langfuse, SearXNG, ClickHouse, Minio, Rediscd local-ai-packaged
+
+- **Added optimizations**: Memory limits, resource constraints
+
+- **Added auto-updates**: Multiple methods for n8n updatesAll methods include automatic backup and rollback on failure.```
+
+- **Simplified config**: Focused on essential AI workflow tools
+
+
+
+## 📚 Documentation
 
 ## 🌐 Production Setup (SSL)Before running the services, you need to set up your environment variables for Supabase following their [self-hosting guide](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services).
 
+- [Detailed Setup Guide](README-t3small.md)
 
+- [GitHub Setup Guide](GITHUB-SETUP.md)
 
-1. **Configure domains** in `.env`:1. Make a copy of `.env.example` and rename it to `.env` in the root directory of the project
+- [Original Project](https://github.com/coleam00/local-ai-packaged)
+
+- [n8n Documentation](https://docs.n8n.io/)1. **Configure domains** in `.env`:1. Make a copy of `.env.example` and rename it to `.env` in the root directory of the project
+
+- [Supabase Self-hosting](https://supabase.com/docs/guides/self-hosting)
 
 ```bash2. Set the following required environment variables:
 
+## 🆘 Support
+
 N8N_HOSTNAME=n8n.yourdomain.com   ```bash
 
-WEBUI_HOSTNAME=openwebui.yourdomain.com   ############
+For issues:
 
-FLOWISE_HOSTNAME=flowise.yourdomain.com   # N8N Configuration
+1. Check the [detailed guide](README-t3small.md)WEBUI_HOSTNAME=openwebui.yourdomain.com   ############
+
+2. Review logs: `docker compose logs -f`
+
+3. Check resource usage: `docker stats`FLOWISE_HOSTNAME=flowise.yourdomain.com   # N8N Configuration
+
+4. Verify DNS and SSL configuration
 
 SUPABASE_HOSTNAME=supabase.yourdomain.com   ############
 
+## 📄 License
+
 QDRANT_HOSTNAME=qdrant.yourdomain.com   N8N_ENCRYPTION_KEY=
+
+Based on [local-ai-packaged](https://github.com/coleam00/local-ai-packaged) - Apache License 2.0
 
 LETSENCRYPT_EMAIL=admin@yourdomain.com   N8N_USER_MANAGEMENT_JWT_SECRET=
 
+---
+
 ```
+
+**⚡ Perfect for small cloud deployments needing essential AI services with automatic updates!**
 
    ############
 
+Maintained by [Highland PC](https://github.com/highlandpc)
 2. **Set DNS A records** pointing to your EC2 IP   # Supabase Secrets
 
    ############
