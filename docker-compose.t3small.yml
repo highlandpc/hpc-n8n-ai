@@ -91,6 +91,7 @@ services:
     entrypoint: /bin/sh -c "sleep 3; flowise start"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+    stop_grace_period: 30s
     deploy:
       resources:
         limits:
@@ -110,6 +111,7 @@ services:
       - open-webui:/app/backend/data
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+    stop_grace_period: 30s
     deploy:
       resources:
         limits:
@@ -146,6 +148,7 @@ services:
         condition: service_completed_successfully
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+    stop_grace_period: 30s
 
   qdrant:
     image: qdrant/qdrant
@@ -158,6 +161,7 @@ services:
       - qdrant_storage:/qdrant/storage
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+    stop_grace_period: 30s
     deploy:
       resources:
         limits:
@@ -267,7 +271,7 @@ services:
       - /dev/kfd
       - /dev/dri
 
-  # Watchtower - Automatic Docker Image Updates
+  # Watchtower - Automatic Docker Image Updates with Data Protection
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -280,6 +284,13 @@ services:
       - WATCHTOWER_INCLUDE_STOPPED=false
       - WATCHTOWER_SCHEDULE=0 0 3 * * SUN
       - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_TIMEOUT=60s
+      - WATCHTOWER_LIFECYCLE_HOOKS=true
+      - WATCHTOWER_NO_PULL=false
+      - WATCHTOWER_NO_RESTART=false
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_REVIVE_STOPPED=false
       - TZ=America/New_York
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
