@@ -1,0 +1,17 @@
+# Systemd timer for n8n auto-updates  
+# Place in /etc/systemd/system/n8n-autoupdate.timer
+
+[Unit]
+Description=Run n8n auto-update weekly
+Requires=n8n-autoupdate.service
+
+[Timer]
+# Run every Sunday at 2 AM
+OnCalendar=Sun *-*-* 02:00:00
+# Run on boot if missed
+Persistent=true
+# Random delay up to 30 minutes to avoid server load spikes
+RandomizedDelaySec=1800
+
+[Install]
+WantedBy=timers.target

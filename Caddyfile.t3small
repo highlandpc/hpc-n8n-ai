@@ -1,0 +1,42 @@
+# Optimized Caddyfile for t3.small with required services only
+# n8n, Supabase, Ollama, Open WebUI, Flowise, Qdrant
+
+{
+    admin off
+    email {$LETSENCRYPT_EMAIL}
+}
+
+# n8n
+{$N8N_HOSTNAME} {
+    reverse_proxy n8n:5678
+    header Strict-Transport-Security "max-age=31536000;"
+}
+
+# Open WebUI  
+{$WEBUI_HOSTNAME} {
+    reverse_proxy open-webui:8080
+    header Strict-Transport-Security "max-age=31536000;"
+}
+
+# Flowise
+{$FLOWISE_HOSTNAME} {
+    reverse_proxy flowise:3001
+    header Strict-Transport-Security "max-age=31536000;"
+}
+
+# Supabase
+{$SUPABASE_HOSTNAME} {
+    reverse_proxy kong:8000
+    header Strict-Transport-Security "max-age=31536000;"
+}
+
+# Qdrant
+{$QDRANT_HOSTNAME} {
+    reverse_proxy qdrant:6333
+    header Strict-Transport-Security "max-age=31536000;"
+}
+
+# Redirect HTTP to HTTPS
+http:// {
+    redir https://{host}{uri}
+}
