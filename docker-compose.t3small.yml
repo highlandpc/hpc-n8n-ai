@@ -89,6 +89,8 @@ services:
     volumes:
       - flowise:/root/.flowise
     entrypoint: /bin/sh -c "sleep 3; flowise start"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     deploy:
       resources:
         limits:
@@ -106,6 +108,8 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - open-webui:/app/backend/data
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     deploy:
       resources:
         limits:
@@ -152,6 +156,8 @@ services:
       - 6334/tcp
     volumes:
       - qdrant_storage:/qdrant/storage
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     deploy:
       resources:
         limits:
@@ -176,6 +182,8 @@ services:
       - ./caddy-addon:/etc/caddy/addons:ro
       - caddy-data:/data:rw
       - caddy-config:/config:rw
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     environment:
       - N8N_HOSTNAME=${N8N_HOSTNAME:-":8001"}
       - WEBUI_HOSTNAME=${WEBUI_HOSTNAME:-":8002"}
@@ -194,6 +202,8 @@ services:
   ollama-cpu:
     <<: *service-ollama
     profiles: ["cpu"]
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     depends_on:
       init-ollama-cpu:
         condition: service_completed_successfully
@@ -210,6 +220,8 @@ services:
   ollama-gpu:
     <<: *service-ollama
     profiles: ["gpu-nvidia"]
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     deploy:
       resources:
         limits:
@@ -239,6 +251,8 @@ services:
   ollama-gpu-amd:
     <<: *service-ollama
     profiles: ["gpu-amd"]
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     devices:
       - /dev/kfd
       - /dev/dri
