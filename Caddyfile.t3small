@@ -24,15 +24,21 @@
     header Strict-Transport-Security "max-age=31536000;"
 }
 
-# Supabase
+# Qdrant Vector Database
+{$QDRANT_HOSTNAME} {
+    reverse_proxy qdrant:6333
+    header Strict-Transport-Security "max-age=31536000;"
+}
+
+# Supabase Backend
 {$SUPABASE_HOSTNAME} {
     reverse_proxy kong:8000
     header Strict-Transport-Security "max-age=31536000;"
 }
 
-# Qdrant
-{$QDRANT_HOSTNAME} {
-    reverse_proxy qdrant:6333
+# Ollama API
+{$OLLAMA_HOSTNAME} {
+    reverse_proxy ollama-cpu:11434
     header Strict-Transport-Security "max-age=31536000;"
 }
 
