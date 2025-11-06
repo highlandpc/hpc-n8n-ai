@@ -232,10 +232,10 @@ services:
           memory: 1536M
         reservations:
           memory: 512M
-        generic_resources:
-          - discrete_resource_spec:
-              kind: "NVIDIA-GPU"
-              value: 1
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     depends_on:
       init-ollama-gpu:
         condition: service_completed_successfully
@@ -247,10 +247,11 @@ services:
       resources:
         limits:
           memory: 1536M
-        generic_resources:
-          - discrete_resource_spec:
-              kind: "NVIDIA-GPU"
-              value: 1
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   ollama-gpu-amd:
     <<: *service-ollama
