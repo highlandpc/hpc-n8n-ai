@@ -35,7 +35,7 @@ ssh -i your-key.pem ubuntu@YOUR_NEW_IP
 ## Step 4: Deploy
 
 ```bash
-cd ~/hpc-n8n-ai/local-ai-t3small-optimized
+cd ~/hpc-n8n-ai
 ./deploy-minimal.sh
 ```
 

@@ -23,8 +23,8 @@ Due to memory constraints on t3.small (2GB RAM), we've simplified the deployment
 ### 1. Stop Current Deployment (if running)
 
 ```bash
-cd ~/hpc-n8n-ai/local-ai-t3small-optimized
-docker compose -p hpc-n8n-ai --profile cpu -f docker-compose.t3small.yml down
+cd ~/hpc-n8n-ai
+docker compose -p hpc-n8n-ai -f docker-compose.minimal.yml down
 ```
 
 ### 2. Clean Up Resources

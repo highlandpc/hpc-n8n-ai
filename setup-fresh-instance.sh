@@ -32,7 +32,7 @@ sudo apt-get install -y git
 echo "📥 Cloning repository..."
 cd ~
 git clone https://github.com/highlandpc/hpc-n8n-ai.git
-cd hpc-n8n-ai/local-ai-t3small-optimized
+cd hpc-n8n-ai
 
 # Setup environment
 echo "⚙️  Setting up environment..."
@@ -44,7 +44,7 @@ echo ""
 echo "⚠️  IMPORTANT: You need to log out and back in for Docker permissions to take effect"
 echo ""
 echo "After logging back in, run:"
-echo "  cd ~/hpc-n8n-ai/local-ai-t3small-optimized"
+echo "  cd ~/hpc-n8n-ai"
 echo "  ./deploy-minimal.sh"
 echo ""
 echo "🔐 Configure your firewall to allow:"
