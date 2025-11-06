@@ -1,0 +1,43 @@
+# Minimal Caddyfile for n8n + Flowise
+# Automatic HTTPS with Let's Encrypt
+
+{
+	email {$LETSENCRYPT_EMAIL}
+	# Uncomment for testing to avoid rate limits
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# n8n Workflow Automation
+{$N8N_HOSTNAME:localhost} {
+	reverse_proxy n8n:5678 {
+		# WebSocket support for n8n editor
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+	
+	# Security headers
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		X-XSS-Protection "1; mode=block"
+	}
+}
+
+# Flowise AI Workflow Builder
+{$FLOWISE_HOSTNAME:localhost} {
+	reverse_proxy flowise:3000 {
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+	
+	# Security headers
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		X-XSS-Protection "1; mode=block"
+	}
+}

@@ -1,0 +1,131 @@
+version: '3.8'
+
+# Minimal deployment for AWS t3.small (2GB RAM)
+# Services: n8n + Flowise + Caddy only
+# Memory usage: ~600MB total
+
+services:
+  # =============================================================================
+  # REVERSE PROXY - Caddy (Automatic HTTPS)
+  # =============================================================================
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile.minimal:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - N8N_HOSTNAME=${N8N_HOSTNAME:-localhost}
+      - FLOWISE_HOSTNAME=${FLOWISE_HOSTNAME:-localhost}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-}
+    networks:
+      - hpc-network
+    mem_limit: 128m
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # =============================================================================
+  # WORKFLOW AUTOMATION - n8n
+  # =============================================================================
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    environment:
+      - N8N_HOST=${N8N_HOSTNAME:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://${N8N_HOSTNAME:-localhost}
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - N8N_USER_MANAGEMENT_JWT_SECRET=${N8N_USER_MANAGEMENT_JWT_SECRET}
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+      - N8N_METRICS=false
+      - N8N_LOG_LEVEL=info
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - hpc-network
+    mem_limit: 512m
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:5678/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 45s
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # =============================================================================
+  # AI WORKFLOW BUILDER - Flowise
+  # =============================================================================
+  flowise:
+    image: flowiseai/flowise:latest
+    container_name: flowise
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - FLOWISE_USERNAME=${FLOWISE_USERNAME:-}
+      - FLOWISE_PASSWORD=${FLOWISE_PASSWORD:-}
+      - DATABASE_PATH=/root/.flowise
+      - APIKEY_PATH=/root/.flowise
+      - SECRETKEY_PATH=/root/.flowise
+      - LOG_LEVEL=info
+      - LOG_PATH=/root/.flowise/logs
+    volumes:
+      - flowise_data:/root/.flowise
+    networks:
+      - hpc-network
+    mem_limit: 512m
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/v1/ping || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # =============================================================================
+  # AUTO-UPDATES - Watchtower
+  # =============================================================================
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_SCHEDULE=0 0 3 * * 0
+      - WATCHTOWER_TIMEOUT=60s
+      - WATCHTOWER_LIFECYCLE_HOOKS=true
+      - TZ=America/New_York
+    networks:
+      - hpc-network
+    mem_limit: 64m
+
+networks:
+  hpc-network:
+    driver: bridge
+
+volumes:
+  caddy_data:
+    driver: local
+  caddy_config:
+    driver: local
+  n8n_data:
+    driver: local
+  flowise_data:
+    driver: local
