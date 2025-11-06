@@ -2,7 +2,7 @@ version: '3.8'
 
 # Minimal deployment for AWS t3.small (2GB RAM)
 # Services: n8n + Flowise + Caddy only
-# Memory usage: ~600MB total
+# Memory usage: ~1.2GB total
 
 services:
   # =============================================================================
@@ -79,11 +79,12 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - LOG_LEVEL=info
       - LOG_PATH=/root/.flowise/logs
+      - NODE_OPTIONS=--max-old-space-size=768
     volumes:
       - flowise_data:/root/.flowise
     networks:
       - hpc-network
-    mem_limit: 512m
+    mem_limit: 896m
     stop_grace_period: 30s
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/v1/ping || exit 1"]
